@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Text from './components/Text';
+import Generator from './components/Generator'
+import {StateProvider} from "./statemanagement"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const initialState = {
+    text: ''
+  };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'changeText':
+        return {
+          ...state,
+          text: action.text
+        };
+
+      default:
+        return state;
+    }
+  };
+
+  return (<div className="App">
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <Generator/>
+      <Text/>
+    </StateProvider>
+  </div>);
 }
 
 export default App;

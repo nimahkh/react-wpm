@@ -1,22 +1,55 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
+body {
   background-color: #282c34;
-  min-height: 100vh;
+  margin-top: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+textarea {
+  min-height: 25vh;
+  min-width: 100vh;
+  padding: 2vh;
+  font-size: 16px !important;
+  border-radius: 10px;
+  border: none;
+  border-collapse: collapse;
+  resize: none;
+}
+
+.generatedText {
+  width: 100vh;
+  margin: 0 auto;
+  margin-bottom: 2vh;
+  line-height: 3.5vh;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  padding: 2vh;
+  border-radius: 10px;
+}
+
+.newText {
+  min-width: 100vh;
+}
+
+.newText button {
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 2vh;
+  min-width: 25%;
+  border-radius: 10px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  margin-bottom: 15px;
+  background-color:#333;
+  color:#fff
+}
+
+
+.newText button:hover {
+  border: 1px solid #eee;
+  cursor: pointer
 }
