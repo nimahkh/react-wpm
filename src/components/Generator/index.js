@@ -4,11 +4,12 @@ import {useStateValue} from '../../statemanagement'
 
 function Generator(props) {
   const [text, setText] = useState();
-  const [, dispatch] = useStateValue();
+  const [{errors}, dispatch] = useStateValue();
+  let InnerText=errors !== "" ? errors : text;
 
   const generateNewText=useCallback(()=>{
     let params = {
-      sentences: 10,
+      sentences: 1,
       lorem: 0
     };
     generateText(params).then(res => {
@@ -24,7 +25,7 @@ function Generator(props) {
 
   return (<React.Fragment>
     <div className="generatedText">
-      {text}
+      <span dangerouslySetInnerHTML={{__html: InnerText}} />
     </div>
     <div className="newText">
       <button onClick={generateNewText}>

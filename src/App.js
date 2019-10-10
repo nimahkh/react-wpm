@@ -6,7 +6,9 @@ import {StateProvider} from "./statemanagement"
 
 function App() {
   const initialState = {
-    text: ''
+    text: '',
+    errors: '',
+    wpm : 0
   };
 
   const reducer = (state, action) => {
@@ -16,6 +18,16 @@ function App() {
           ...state,
           text: action.text
         };
+        case 'changeErrors':
+        return{
+          ...state,
+          errors: action.errors
+        };
+        case 'changeWPM':
+        return{
+          ...state,
+          wpm: action.wpm
+        }
 
       default:
         return state;
