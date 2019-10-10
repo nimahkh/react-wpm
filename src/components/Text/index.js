@@ -4,8 +4,8 @@ import {Timer} from "../../utils/Timeout"
 // import {useDiff} from '../../utils/wpm'
 import {selectText, stringCount} from '../../utils/utils'
 
-function Text(props) {
-  const [{text},dispatch] = useStateValue();
+function TextHandler(props) {
+  const [{text,stop},dispatch] = useStateValue();
   const [typeText, setNewText] = useState();
   const [countNode, setCountNode] = useState(0);
   const [misspeledNode, setMissPelledNode] = useState(0);
@@ -14,7 +14,7 @@ function Text(props) {
   const [elapsedTimeNode, setElapsedTimeNode] = useState();
   const [completed, setCompleted] = useState(false);
   const [WPM, setWPM] = useState();
-  // const [oldText,newText,position,dispatch] = useDiff(text,typeText,10);
+
   let currentText = text !== ""
     ? selectText(text)
     : "";
@@ -148,6 +148,10 @@ function Text(props) {
       let seconds = Math.floor(elapsedTime % 60);
       setElapsedTimeNode(`${minutes}m ${seconds}s `)
       setCompleted(true)
+      dispatch({
+        type:"stopTimer",
+        stop: true
+      })
     }
 
     if (mistakes === 0) {
@@ -165,10 +169,19 @@ function Text(props) {
       <span>Misspeled Node : {misspeledNode} </span>
       <span>Accuracy Node : {accuracyNode} </span>
       <span>errorNode : {errorNode} </span>
-      <Timer start={Date.now()}/>
     </div>
-    <textarea onChange={(e) => handleInput(e)} value={typeText}/>
+    <textarea onChange={(e) => stop ? false : handleInput(e)} value={typeText}/>
   </React.Fragment>)
+}
+
+function Text(){
+  return (
+    <React.Fragment>
+      <Timer stop={10}/>
+      <TextHandler/>
+    </React.Fragment>
+  )
+
 }
 
 export default Text;

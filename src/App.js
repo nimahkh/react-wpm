@@ -8,7 +8,7 @@ function App() {
   const initialState = {
     text: '',
     errors: '',
-    wpm : 0
+    stop : false
   };
 
   const reducer = (state, action) => {
@@ -23,10 +23,10 @@ function App() {
           ...state,
           errors: action.errors
         };
-        case 'changeWPM':
+        case 'stopTimer':
         return{
           ...state,
-          wpm: action.wpm
+          stop: action.stop
         }
 
       default:

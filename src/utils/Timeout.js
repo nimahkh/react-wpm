@@ -1,23 +1,57 @@
 import React, {useEffect, useState} from 'react'
+import {useStateValue} from '../statemanagement'
 
 export function Timer(props) {
   const [elapsed, setElapsed] = useState(0);
+  const [,dispatch] = useStateValue();
+  const [stopIt,setStopIt]=useState(false);
+
+  function Retest(){
+    setStopIt(false)
+    setElapsed(0)
+    dispatch({
+      type:"stopTimer",
+      stop: false
+    })
+  }
 
   useEffect(() => {
-    let timer = setInterval(() => {
-      setElapsed(new Date() - props.start)
-    }, 50);
+    let timer;
+    let elapsed=0;
+
+    if(!stopIt){
+      timer = setInterval(() => {
+        elapsed++
+        // time to stop
+        if(parseInt(elapsed) !== props.stop){
+           setElapsed(elapsed)
+        }
+        else{
+          setStopIt(true)
+          clearInterval(timer)
+          dispatch({
+            type:"stopTimer",
+            stop: true
+          })
+        }
+      }, 1000);
+    }
 
     return() => {
+      // to prevent memory leaks
       clearInterval(timer);
     }
 
-  }, [props.start])
+  }, [dispatch, props.start, props.stop, stopIt])
 
-  let elapse = Math.round(elapsed / 100);
-  // This will give a number with one digit after the decimal dot (xx.x):
-  var seconds = (elapse / 10).toFixed(1);
-
-  return (<p>This example was started <b>{seconds} seconds</b> ago.</p>)
+  return (
+    <React.Fragment>
+      {stopIt ?
+        <p>Done</p>
+        :
+      <p>your time to finish the game : <b>{elapsed} seconds</b> </p>
+      }
+    </React.Fragment>
+    )
 
 }
