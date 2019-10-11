@@ -7,5 +7,4 @@ export function generateText({sentences, lorem}) {
     method: 'get',
     url: url,
   });
-  //return axios.get(url)
 }
