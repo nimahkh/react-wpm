@@ -27,11 +27,7 @@ function Generator(props) {
     <div className="generatedText">
       <span dangerouslySetInnerHTML={{__html: InnerText}} />
     </div>
-    <div className="newText">
-      <button onClick={generateNewText}>
-        New Text
-      </button>
-    </div>
+
   </React.Fragment>)
 }
 

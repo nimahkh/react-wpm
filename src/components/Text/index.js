@@ -5,7 +5,12 @@ import {Timer} from "../../utils/Timeout"
 import {selectText, stringCount} from '../../utils/utils'
 
 function TextHandler(props) {
-  const [{text,stop},dispatch] = useStateValue();
+  const [
+    {
+      text,
+      stop,
+      renew
+    }, dispatch] = useStateValue();
   const [typeText, setNewText] = useState();
   const [countNode, setCountNode] = useState(0);
   const [misspeledNode, setMissPelledNode] = useState(0);
@@ -72,7 +77,7 @@ function TextHandler(props) {
     // count character accuracy
     //let mistakes = 0;
     let characters = 0;
-    let mistakes=0
+    let mistakes = 0
 
     for (let i = 0; i <= lastWordEnetred; i++) {
       let userword = filterUserInput[i];
@@ -115,10 +120,7 @@ function TextHandler(props) {
     // only display positive integers, reset markupText
     if (mistakes >= 0) {
       setErrorNode(mistakes);
-      dispatch({
-        type:'changeErrors',
-        errors:markupText
-      })
+      dispatch({type: 'changeErrors', errors: markupText})
       // reset markupText
       markupText = "";
     }
@@ -135,9 +137,9 @@ function TextHandler(props) {
     let entryTime = new Date();
 
     let elapsedMinutes = (entryTime - startTime) / 60;
-    let wpm= Math.floor(enteredWordCount / elapsedMinutes);
+    let wpm = Math.floor(enteredWordCount / elapsedMinutes);
 
-    if(wpm!== Infinity && !isNaN(wpm)){
+    if (wpm !== Infinity && !isNaN(wpm)) {
       setWPM(wpm)
     }
 
@@ -148,40 +150,46 @@ function TextHandler(props) {
       let seconds = Math.floor(elapsedTime % 60);
       setElapsedTimeNode(`${minutes}m ${seconds}s `)
       setCompleted(true)
-      dispatch({
-        type:"stopTimer",
-        stop: true
-      })
+      dispatch({type: "stopTimer", stop: true})
     }
 
     if (mistakes === 0) {
       setNewText(value)
-    }else{
+    } else {
       return false;
     }
   }
 
   return (<React.Fragment>
     <div>
-      <span>WPM : {WPM} </span>
-      <span>Elapsed Time : {elapsedTimeNode} </span>
-      <span>Count Node : {countNode} </span>
-      <span>Misspeled Node : {misspeledNode} </span>
-      <span>Accuracy Node : {accuracyNode} </span>
-      <span>errorNode : {errorNode} </span>
+      <span>WPM : {WPM}
+      </span>
+      <span>Elapsed Time : {elapsedTimeNode}
+      </span>
+      <span>Count Node : {countNode}
+      </span>
+      <span>Misspeled Node : {misspeledNode}
+      </span>
+      <span>Accuracy Node : {accuracyNode}
+      </span>
+      <span>errorNode : {errorNode}
+      </span>
     </div>
-    <textarea onChange={(e) => stop ? false : handleInput(e)} value={typeText}/>
+    <textarea onChange={(
+        e) => stop
+        ? false
+        : handleInput(e)} value={typeText}/>
   </React.Fragment>)
 }
 
-function Text(){
+function Text(props) {
+
   return (
     <React.Fragment>
       <Timer stop={10}/>
       <TextHandler/>
     </React.Fragment>
   )
-
 }
 
 export default Text;
