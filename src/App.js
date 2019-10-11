@@ -1,14 +1,13 @@
 import React from 'react';
 import './App.css';
-import Text from './components/Text';
-import Generator from './components/Generator'
+import MainComponent from './components/MainComponent';
 import {StateProvider} from "./statemanagement"
 
 function App() {
   const initialState = {
     text: '',
     errors: '',
-    stop : false
+    stop : false,
   };
 
   const reducer = (state, action) => {
@@ -27,7 +26,7 @@ function App() {
         return{
           ...state,
           stop: action.stop
-        }
+        };
 
       default:
         return state;
@@ -36,8 +35,7 @@ function App() {
 
   return (<div className="App">
     <StateProvider initialState={initialState} reducer={reducer}>
-      <Generator/>
-      <Text/>
+        <MainComponent/>
     </StateProvider>
   </div>);
 }
