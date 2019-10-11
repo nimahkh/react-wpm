@@ -9,7 +9,8 @@ function TextHandler(props) {
     {
       text,
       stop,
-      renew
+      renew,
+      testResult
     }, dispatch] = useStateValue();
   const [typeText, setNewText] = useState();
   const [countNode, setCountNode] = useState(0);
@@ -72,6 +73,10 @@ function TextHandler(props) {
 
     if (misspelledWords >= 0) {
       setMissPelledNode(misspelledWords)
+      dispatch({
+        type:'WPMResult',
+        testResult: {...testResult, misspelled:misspelledWords}
+      })
     }
 
     // count character accuracy
@@ -120,6 +125,10 @@ function TextHandler(props) {
     // only display positive integers, reset markupText
     if (mistakes >= 0) {
       setErrorNode(mistakes);
+      dispatch({
+        type:'WPMResult',
+        testResult: {...testResult, mistakes:mistakes}
+      })
       dispatch({type: 'changeErrors', errors: markupText})
       // reset markupText
       markupText = "";
@@ -131,6 +140,10 @@ function TextHandler(props) {
     // ignore not-a-number errors when updating
     if (!isNaN(accuracy)) {
       setAccuracyNode(`${accuracy}%`)
+      dispatch({
+        type:'WPMResult',
+        testResult: {...testResult, accuracy:accuracy}
+      })
     }
 
     // calculate words per minute
@@ -141,6 +154,10 @@ function TextHandler(props) {
 
     if (wpm !== Infinity && !isNaN(wpm)) {
       setWPM(wpm)
+      dispatch({
+        type:'WPMResult',
+        testResult: {...testResult, wpm:wpm}
+      })
     }
 
     // calculate total typing time, only once per given text
@@ -149,7 +166,12 @@ function TextHandler(props) {
       let minutes = Math.floor(elapsedTime / 60);
       let seconds = Math.floor(elapsedTime % 60);
       setElapsedTimeNode(`${minutes}m ${seconds}s `)
+      dispatch({
+        type:'WPMResult',
+        testResult: {...testResult, elapsedTime:`${minutes}m ${seconds}s `}
+      })
       setCompleted(true)
+      //ok lets to see what you done
       dispatch({type: "stopTimer", stop: true})
     }
 
@@ -161,20 +183,6 @@ function TextHandler(props) {
   }
 
   return (<React.Fragment>
-    <div>
-      <span>WPM : {WPM}
-      </span>
-      <span>Elapsed Time : {elapsedTimeNode}
-      </span>
-      <span>Count Node : {countNode}
-      </span>
-      <span>Misspeled Node : {misspeledNode}
-      </span>
-      <span>Accuracy Node : {accuracyNode}
-      </span>
-      <span>errorNode : {errorNode}
-      </span>
-    </div>
     <textarea onChange={(
         e) => stop
         ? false
