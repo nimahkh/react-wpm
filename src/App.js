@@ -8,6 +8,13 @@ function App() {
     text: '',
     errors: '',
     stop : false,
+    testResult:{
+      wpm: 0,
+      elapsedTime: 0,
+      accuracy: 0,
+      mistakes: 0,
+      misspelled: 0,
+    }
   };
 
   const reducer = (state, action) => {
@@ -26,6 +33,17 @@ function App() {
         return{
           ...state,
           stop: action.stop
+        };
+        case 'WPMResult':
+        return {
+          ...state,
+          testResult:{
+            wpm: action.testResult.wpm,
+            elapsedTime: action.testResult.elapsedTime,
+            accuracy: action.testResult.accuracy,
+            mistakes: action.testResult.mistakes,
+            misspelled: action.testResult.misspelled,
+          }
         };
 
       default:
