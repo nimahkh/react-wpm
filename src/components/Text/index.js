@@ -9,6 +9,7 @@ function TextHandler(props) {
     {
       text,
       stop,
+      start,
       renew,
       testResult
     }, dispatch] = useStateValue();
@@ -18,6 +19,7 @@ function TextHandler(props) {
   const [errorNode, setErrorNode] = useState(0);
   const [accuracyNode, setAccuracyNode] = useState();
   const [elapsedTimeNode, setElapsedTimeNode] = useState();
+  const [startTime,setStartTime]=useState();
   const [completed, setCompleted] = useState(false);
   const [WPM, setWPM] = useState();
 
@@ -25,7 +27,6 @@ function TextHandler(props) {
     ? selectText(text)
     : "";
   let begun = false;
-  let startTime;
   let endTime;
   let enteredWordCount = 0;
   let elapsedTime;
@@ -34,14 +35,26 @@ function TextHandler(props) {
     : 0;
   let accuracy;
   let markupText = "";
+  let lastWordEnetred;
+  let mistakes;
+  let lastWordsMatch;
 
   function handleInput(event) {
+    if(!start){
+      dispatch({
+        type: 'startTheGame',
+        start: true
+      })
+    }
+
     const value = event.target.value;
+    setNewText(value)
 
     //First start the test
-    if (!begun) {
+    if (!start) {
       begun = true;
-      startTime = new Date();
+      //set StartTime just once
+      setStartTime(new Date());
     }
 
     //count user Entery
@@ -56,12 +69,12 @@ function TextHandler(props) {
       endTime = new Date();
     }
 
-    let lastWordEnetred = enteredWordCount - 1;
+    lastWordEnetred = enteredWordCount - 1;
     let filterUserInput = value.split(' ').filter(e => e);
     let exactLastword = filterUserInput[lastWordEnetred];
     let filterCurrentText = currentText.split(' ').filter(e => e);
     let targetWord = filterCurrentText[lastWordEnetred];
-    let lastWordsMatch = (exactLastword === targetWord);
+    lastWordsMatch = (exactLastword === targetWord);
 
     let misspelledWords = 0;
 
@@ -82,7 +95,7 @@ function TextHandler(props) {
     // count character accuracy
     //let mistakes = 0;
     let characters = 0;
-    let mistakes = 0
+    mistakes = 0
 
     for (let i = 0; i <= lastWordEnetred; i++) {
       let userword = filterUserInput[i];
@@ -148,8 +161,7 @@ function TextHandler(props) {
 
     // calculate words per minute
     let entryTime = new Date();
-
-    let elapsedMinutes = (entryTime - startTime) / 60;
+    let elapsedMinutes = (entryTime - startTime) / 1000 / 60;
     let wpm = Math.floor(enteredWordCount / elapsedMinutes);
 
     if (wpm !== Infinity && !isNaN(wpm)) {
@@ -160,22 +172,27 @@ function TextHandler(props) {
       })
     }
 
-    // calculate total typing time, only once per given text
     if (endTime && !completed && lastWordsMatch) {
       elapsedTime = (endTime - startTime) / 1000;
       let minutes = Math.floor(elapsedTime / 60);
       let seconds = Math.floor(elapsedTime % 60);
-      setElapsedTimeNode(`${minutes}m ${seconds}s `)
+
       dispatch({
         type:'WPMResult',
-        testResult: {...testResult, elapsedTime:`${minutes}m ${seconds}s `}
+        testResult: {...testResult, elapsedTime:minutes+seconds}
       })
+
       setCompleted(true)
       //ok lets to see what you done
       dispatch({type: "stopTimer", stop: true})
     }
 
+    console.log(mistakes);
     if (mistakes === 0) {
+      dispatch({
+        type:'WPMResult',
+        testResult: {...testResult, userInput:value}
+      })
       setNewText(value)
     } else {
       return false;
@@ -191,10 +208,13 @@ function TextHandler(props) {
 }
 
 function Text(props) {
+  const [{start},] = useStateValue()
 
   return (
     <React.Fragment>
+      {start &&
       <Timer stop={10}/>
+      }
       <TextHandler/>
     </React.Fragment>
   )
