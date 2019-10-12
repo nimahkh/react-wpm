@@ -208,7 +208,7 @@ function TextHandler(props) {
 }
 
 function Text(props) {
-  const [{start},] = useStateValue()
+  const [{start},dispatch] = useStateValue()
 
   return (
     <React.Fragment>

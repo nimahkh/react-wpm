@@ -6,14 +6,22 @@ function Result(props){
   const [percentage,setPercentage] = useState(0);
 
   function reTest(){
+    //reset everything
     dispatch({
-      type:'stopTimer',
-      stop:false
+      type:'WPMResult',
+      testResult: {...WPMResult, userInput:''}
     })
     dispatch({
       type:'changeErrors',
       stop:''
     })
+
+    setTimeout(()=>{
+      dispatch({
+        type:'stopTimer',
+        stop:false
+      })
+    },500)
   }
 
   useEffect(()=>{
