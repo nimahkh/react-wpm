@@ -8,12 +8,14 @@ function App() {
     text: '',
     errors: '',
     stop : false,
+    start:false,
     testResult:{
       wpm: 0,
       elapsedTime: 0,
       accuracy: 0,
       mistakes: 0,
       misspelled: 0,
+      userInput: '',
     }
   };
 
@@ -34,6 +36,11 @@ function App() {
           ...state,
           stop: action.stop
         };
+        case 'startTheGame':
+        return{
+          ...state,
+          start: action.start
+        };
         case 'WPMResult':
         return {
           ...state,
@@ -43,6 +50,7 @@ function App() {
             accuracy: action.testResult.accuracy,
             mistakes: action.testResult.mistakes,
             misspelled: action.testResult.misspelled,
+            userInput: action.testResult.userInput
           }
         };
 
