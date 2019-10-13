@@ -102,6 +102,99 @@ textarea {
   cursor: pointer;
 }
 
+.result div.retest button:first-child {
+  margin-right: 10px;
+}
+
+.YourId {
+  text-align: center;
+  padding: 15px;
+  background: #0d88a4;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 17px;
+  letter-spacing: 5px;
+}
+
+.YourId div {
+  letter-spacing: normal;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.menu ul {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  padding-bottom: 20px;
+  padding-bottom: 30px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0px);
+}
+
+.menu{
+  display: flex;
+  margin: 0 auto
+}
+
+.menu li {
+  display: inline;
+  margin: 0 auto;
+  float:right;
+  margin-left: 3px
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #0d88a4;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.menu li a:hover {
+  color: #0d88a4;
+  background-color: #282c34;
+  border: 1px solid #ccc
+}
+
+.enterId {
+  display: block;
+  border: 1px solid #0d88a4;
+  width: 70%;
+  height: 40px;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.search {
+  display: block;
+  border: 1px solid #0d88a4;
+  width: 30%;
+  height: 50px;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 15px
+}
+
+.get_id .container {
+  display: block
+}
+
+.score_result {
+  border: 1px solid #0d88a4;
+  height: 60px;
+  padding: 15px;
+  font-size: 16px;
+  color: #fff;
+  margin-top: 15px;
+}
+
 @-moz-keyframes morphing {
   0% {
     border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
@@ -179,5 +272,78 @@ textarea {
 
   75% {
     border-radius: 33% 67% 58% 42%/63% 68% 32% 37%;
+  }
+}
+
+.lds-ellipsis {
+  display: block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  left: 50%;
+  -webkit-transform-origin: translate(-50%, 0px);
+  -moz-transform-origin: translate(-50%, 0px);
+  -ms-transform-origin: translate(-50%, 0px);
+  -o-transform-origin: translate(-50%, 0px);
+  transform-origin: translate(-50%, 0px);
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 27px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(19px, 0);
   }
 }

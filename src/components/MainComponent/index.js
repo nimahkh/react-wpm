@@ -1,23 +1,12 @@
 import React from "react"
-import Text from '../Text';
-import Generator from '../Generator'
-import Result from '../Result'
-import {useStateValue} from "../../statemanagement"
+import { BrowserRouter as Router } from "react-router-dom";
+import Menu from "../Menu"
 
-function MainComponent(props){
-  const [{stop}, dispatch] = useStateValue();
-
-  return(
-    !stop ?
-    <React.Fragment>
-      <Generator/>
-      <Text/>
-    </React.Fragment>
-    :
-    <React.Fragment>
-      <Result/>
-    </React.Fragment>
-
+function MainComponent(props) {
+  return (
+    <Router>
+      <Menu/>
+    </Router>
   )
 }
 

@@ -213,7 +213,7 @@ function Text(props) {
   return (
     <React.Fragment>
       {start &&
-      <Timer stop={10}/>
+      <Timer stop={1}/>
       }
       <TextHandler/>
     </React.Fragment>
