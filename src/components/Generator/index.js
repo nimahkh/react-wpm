@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {generateText} from '../../requests/generateText'
+import {generateText, cancel} from '../../requests/generateText'
 import {useStateValue} from '../../statemanagement'
 
 function Generator(props) {
@@ -19,12 +19,16 @@ function Generator(props) {
       const {data} = res
       dispatch({type: 'changeText', text: data})
       setText(data);
-    })
+    }).catch(()=> {})
 
   }, [dispatch])
 
   useEffect(() => {
     generateNewText()
+
+    return()=>{
+      cancel()
+    }
   }, [generateNewText])
   return (<React.Fragment>
     <div className="generatedText">

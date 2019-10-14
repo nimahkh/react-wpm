@@ -12,7 +12,7 @@ function Menu() {
           </Link>
         </li>
         <li>
-          <Link to={`/`}>Start the game
+          <Link to={location => ({ ...location, pathname: "/" })}>Start the game
           </Link>
         </li>
       </ul>

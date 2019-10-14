@@ -213,7 +213,7 @@ function Text(props) {
   ] = useStateValue()
 
   return (<React.Fragment>
-    {start && <Timer stop={180}/>}
+    {start && <Timer stop={1}/>}
     <TextHandler/>
   </React.Fragment>)
 }
