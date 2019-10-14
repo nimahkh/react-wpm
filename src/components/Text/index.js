@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useStateValue} from '../../statemanagement'
 import {Timer} from "../../utils/Timeout"
-// import {useDiff} from '../../utils/wpm'
 import {selectText, stringCount} from '../../utils/utils'
 
 function TextHandler(props) {
