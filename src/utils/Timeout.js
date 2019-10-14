@@ -3,27 +3,23 @@ import {useStateValue} from '../statemanagement'
 
 export function Timer(props) {
   const [elapsed, setElapsed] = useState(0);
-  const [,dispatch] = useStateValue();
-  const [stopIt,setStopIt]=useState(false);
+  const [, dispatch] = useStateValue();
+  const [stopIt, setStopIt] = useState(false);
 
   useEffect(() => {
     let timer;
-    let elapsed=0;
+    let elapsed = 0;
 
-    if(!stopIt){
+    if (!stopIt) {
       timer = setInterval(() => {
         elapsed++
         // time to stop
-        if(parseInt(elapsed) !== props.stop){
-           setElapsed(elapsed)
-        }
-        else{
+        if (parseInt(elapsed) !== props.stop) {
+          setElapsed(elapsed)
+        } else {
           setStopIt(true)
           clearInterval(timer)
-          dispatch({
-            type:"stopTimer",
-            stop: true
-          })
+          dispatch({type: "stopTimer", stop: true})
         }
       }, 1000);
     }
@@ -35,14 +31,15 @@ export function Timer(props) {
 
   }, [dispatch, props.start, props.stop, stopIt])
 
-  return (
-    <React.Fragment>
-      {stopIt ?
-        <p>Done</p>
-        :
-      <p>your time to finish the game : <b>{elapsed} seconds</b> </p>
-      }
-    </React.Fragment>
-    )
+  return (<React.Fragment>
+    {
+      stopIt
+        ? <p>Done</p>
+        : <p>your time to finish the game :
+            <b>{elapsed}
+              seconds</b>
+          </p>
+    }
+  </React.Fragment>)
 
 }

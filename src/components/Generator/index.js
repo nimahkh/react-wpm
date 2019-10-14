@@ -4,9 +4,12 @@ import {useStateValue} from '../../statemanagement'
 
 function Generator(props) {
   const [text, setText] = useState();
-  const [{errors}, dispatch] = useStateValue();
+  const [
+    {
+      errors
+    }, dispatch] = useStateValue();
 
-  const generateNewText=useCallback(()=>{
+  const generateNewText = useCallback(() => {
     let params = {
       sentences: 1,
       lorem: 0
@@ -18,14 +21,18 @@ function Generator(props) {
       setText(data);
     })
 
-  },[dispatch])
+  }, [dispatch])
 
   useEffect(() => {
     generateNewText()
   }, [generateNewText])
   return (<React.Fragment>
     <div className="generatedText">
-      <span dangerouslySetInnerHTML={{__html: (errors !== "" && errors !==undefined) ? errors : text}} />
+      <span dangerouslySetInnerHTML={{
+          __html: (errors !== "" && errors !== undefined)
+            ? errors
+            : text
+        }}/>
     </div>
 
   </React.Fragment>)

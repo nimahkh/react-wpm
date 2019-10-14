@@ -4,20 +4,22 @@ import Text from '../Text';
 import Generator from '../Generator'
 import Result from '../Result'
 
-function Home(){
-  const [{stop},] = useStateValue();
+function Home() {
+  const [
+    {
+      stop
+    }
+  ] = useStateValue();
 
-  return(
-    !stop ?
-    <React.Fragment>
+  return (
+    !stop
+    ? <React.Fragment>
       <Generator/>
       <Text/>
     </React.Fragment>
-    :
-    <React.Fragment>
+    : <React.Fragment>
       <Result/>
-    </React.Fragment>
-  )
+    </React.Fragment>)
 }
 
 export default Home;

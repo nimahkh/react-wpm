@@ -21,7 +21,7 @@ function MyScores() {
 
   return (<div className="get_id">
     <div className="container">
-      <input onChange={(e) =>setGetId(e.target.value)} className="enterId" placeholder="Enter the id that you get before..." value={getId}/>
+      <input onChange={(e) => setGetId(e.target.value)} className="enterId" placeholder="Enter the id that you get before..." value={getId}/>
       <button onClick={handleGetId} className="search">submit</button>
       {
         loading && <div className="lds-ellipsis">

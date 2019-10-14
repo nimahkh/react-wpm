@@ -7,15 +7,15 @@ function App() {
   const initialState = {
     text: '',
     errors: '',
-    stop : false,
-    start:false,
-    testResult:{
+    stop: false,
+    start: false,
+    testResult: {
       wpm: 0,
       elapsedTime: 0,
       accuracy: 0,
       mistakes: 0,
       misspelled: 0,
-      userInput: '',
+      userInput: ''
     }
   };
 
@@ -26,25 +26,25 @@ function App() {
           ...state,
           text: action.text
         };
-        case 'changeErrors':
-        return{
+      case 'changeErrors':
+        return {
           ...state,
           errors: action.errors
         };
-        case 'stopTimer':
-        return{
+      case 'stopTimer':
+        return {
           ...state,
           stop: action.stop
         };
-        case 'startTheGame':
-        return{
+      case 'startTheGame':
+        return {
           ...state,
           start: action.start
         };
-        case 'WPMResult':
+      case 'WPMResult':
         return {
           ...state,
-          testResult:{
+          testResult: {
             wpm: action.testResult.wpm,
             elapsedTime: action.testResult.elapsedTime,
             accuracy: action.testResult.accuracy,
@@ -61,7 +61,7 @@ function App() {
 
   return (<div className="App">
     <StateProvider initialState={initialState} reducer={reducer}>
-        <MainComponent/>
+      <MainComponent/>
     </StateProvider>
   </div>);
 }

@@ -13,7 +13,7 @@ function TextHandler(props) {
       testResult
     }, dispatch] = useStateValue();
   const [typeText, setNewText] = useState();
-  const [startTime,setStartTime]=useState();
+  const [startTime, setStartTime] = useState();
   const [completed, setCompleted] = useState(false);
 
   let currentText = text !== ""
@@ -32,11 +32,8 @@ function TextHandler(props) {
   let lastWordsMatch;
 
   function handleInput(event) {
-    if(!start){
-      dispatch({
-        type: 'startTheGame',
-        start: true
-      })
+    if (!start) {
+      dispatch({type: 'startTheGame', start: true})
     }
 
     const value = event.target.value;
@@ -50,7 +47,6 @@ function TextHandler(props) {
 
     //count user Entery
     enteredWordCount = stringCount(value);
-
 
     //if enteredWordCount count is equal to generalTextLenght , it means that test is finished .
     if (enteredWordCount === generalTextLenght) {
@@ -74,8 +70,11 @@ function TextHandler(props) {
 
     if (misspelledWords >= 0) {
       dispatch({
-        type:'WPMResult',
-        testResult: {...testResult, misspelled:misspelledWords}
+        type: 'WPMResult',
+        testResult: {
+          ...testResult,
+          misspelled: misspelledWords
+        }
       })
     }
 
@@ -125,8 +124,11 @@ function TextHandler(props) {
     // only display positive integers, reset markupText
     if (mistakes >= 0) {
       dispatch({
-        type:'WPMResult',
-        testResult: {...testResult, mistakes:mistakes}
+        type: 'WPMResult',
+        testResult: {
+          ...testResult,
+          mistakes: mistakes
+        }
       })
       dispatch({type: 'changeErrors', errors: markupText})
       // reset markupText
@@ -139,8 +141,11 @@ function TextHandler(props) {
     // ignore not-a-number errors when updating
     if (!isNaN(accuracy)) {
       dispatch({
-        type:'WPMResult',
-        testResult: {...testResult, accuracy:accuracy}
+        type: 'WPMResult',
+        testResult: {
+          ...testResult,
+          accuracy: accuracy
+        }
       })
     }
 
@@ -151,8 +156,11 @@ function TextHandler(props) {
 
     if (wpm !== Infinity && !isNaN(wpm)) {
       dispatch({
-        type:'WPMResult',
-        testResult: {...testResult, wpm:wpm}
+        type: 'WPMResult',
+        testResult: {
+          ...testResult,
+          wpm: wpm
+        }
       })
     }
 
@@ -162,8 +170,11 @@ function TextHandler(props) {
       let seconds = Math.floor(elapsedTime % 60);
 
       dispatch({
-        type:'WPMResult',
-        testResult: {...testResult, elapsedTime:minutes+seconds}
+        type: 'WPMResult',
+        testResult: {
+          ...testResult,
+          elapsedTime: minutes + seconds
+        }
       })
 
       setCompleted(true)
@@ -173,8 +184,11 @@ function TextHandler(props) {
 
     if (mistakes === 0) {
       dispatch({
-        type:'WPMResult',
-        testResult: {...testResult, userInput:value}
+        type: 'WPMResult',
+        testResult: {
+          ...testResult,
+          userInput: value
+        }
       })
       setNewText(value)
     } else {
@@ -191,16 +205,16 @@ function TextHandler(props) {
 }
 
 function Text(props) {
-  const [{start},] = useStateValue()
+  const [
+    {
+      start
+    }
+  ] = useStateValue()
 
-  return (
-    <React.Fragment>
-      {start &&
-      <Timer stop={180}/>
-      }
-      <TextHandler/>
-    </React.Fragment>
-  )
+  return (<React.Fragment>
+    {start && <Timer stop={180}/>}
+    <TextHandler/>
+  </React.Fragment>)
 }
 
 export default Text;

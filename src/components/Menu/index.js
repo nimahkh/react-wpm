@@ -23,7 +23,7 @@ function Menu() {
           <Home/>
         </Route>
         <Route exact={true} path="/scores">
-            <MyScores/>
+          <MyScores/>
         </Route>
       </Switch>
     </div>

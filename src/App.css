@@ -23,7 +23,7 @@ textarea {
   width: 815px
 }
 
-.flex{
+.flex {
   display: flex;
 }
 
@@ -141,7 +141,7 @@ textarea {
   transform: translate(-50%, 0px);
 }
 
-.menu{
+.menu {
   display: flex;
   margin: 0 auto
 }
@@ -149,7 +149,7 @@ textarea {
 .menu li {
   display: inline;
   margin: 0 auto;
-  float:right;
+  float: right;
   margin-left: 3px
 }
 
@@ -182,7 +182,7 @@ textarea {
 
 .enterId::placeholder {
   font-size: 18px;
-  text-transform:none;
+  text-transform: none;
   text-align: center;
 }
 

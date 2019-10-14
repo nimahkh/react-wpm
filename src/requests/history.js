@@ -4,7 +4,7 @@ const isPrivate = false
 
 export function postHistory(data) {
   let req = new XMLHttpRequest();
-  req.open("POST",`${apiAddress}/b`, true);
+  req.open("POST", `${apiAddress}/b`, true);
   req.setRequestHeader("Content-type", "application/json");
   req.setRequestHeader("private", isPrivate);
   req.setRequestHeader("secret-key", secretKey);
@@ -16,7 +16,7 @@ export function postHistory(data) {
 
 export function getHistory(id) {
   let req = new XMLHttpRequest();
-  req.open("GET",`${apiAddress}/b/${id}`, true);
+  req.open("GET", `${apiAddress}/b/${id}`, true);
   req.setRequestHeader("Content-type", "application/json");
   req.setRequestHeader("secret-key", secretKey);
   req.send();
