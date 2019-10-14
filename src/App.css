@@ -21,7 +21,7 @@ textarea {
   border: none;
   border-collapse: collapse;
   resize: none;
-  margin:0 auto;
+  margin:0 auto
 }
 
 .App {
@@ -136,7 +136,7 @@ textarea {
 }
 
 .menu ul {
-  display: block;
+  display: flex;
   width: 100%;
   padding: 20px;
   padding-bottom: 20px;
@@ -146,16 +146,10 @@ textarea {
   transform: translate(-50%, 0px);
 }
 
-.menu {
-  display: flex;
-  margin: 0 auto
-}
-
 .menu li {
   display: inline;
   margin: 0 auto;
   float: right;
-  margin-left: 3px
 }
 
 .menu li a {
