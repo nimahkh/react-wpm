@@ -196,10 +196,12 @@ function TextHandler(props) {
   }
 
   return (<React.Fragment>
+    <div className="textArea">
     <textarea onChange={(
         e) => stop
         ? false
         : handleInput(e)} value={typeText}/>
+    </div>
   </React.Fragment>)
 }
 

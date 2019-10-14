@@ -8,6 +8,10 @@ body {
   color: white;
 }
 
+.textArea{
+  display:flex;
+}
+
 textarea {
   min-height: 25vh;
   min-width: 52vw;
@@ -17,6 +21,7 @@ textarea {
   border: none;
   border-collapse: collapse;
   resize: none;
+  margin:0 auto;
 }
 
 .App {
