@@ -57,7 +57,16 @@ function Result(props){
 
   return(
     <React.Fragment>
-      <div className="result">
+      <div className="result flex">
+        {loading &&
+          <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+        }
+        {responseId &&
+        <div className="YourId">
+          <div>You can use your id to check the score again</div>
+          id: {responseId}
+        </div>
+        }
         <ul>
           <li>WPM : {WPMResult.wpm}</li>
           <li>percentage : {percentage.toFixed(0)} % </li>
@@ -68,15 +77,6 @@ function Result(props){
           <button onClick={save}>Save your Result</button>
         </div>
       </div>
-      {loading &&
-        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-      }
-      {responseId &&
-      <div className="YourId">
-        <div>You can use your id to check the score again</div>
-        id: {responseId}
-      </div>
-      }
     </React.Fragment>
   )
 }
