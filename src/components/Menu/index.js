@@ -12,7 +12,7 @@ function Menu() {
           </Link>
         </li>
         <li>
-          <Link onClick={()=>window.location.href="/"}>Start the game
+          <Link to={`/`} onClick={()=>window.location.href="/"}>Start the game
           </Link>
         </li>
       </ul>
