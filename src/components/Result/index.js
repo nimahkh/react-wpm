@@ -39,7 +39,7 @@ function Result(props){
     const dataToJson=JSON.stringify(data)
     const result = postHistory(dataToJson)
     result.onreadystatechange = () => {
-      if (result.readyState == XMLHttpRequest.DONE) {
+      if (result.readyState === XMLHttpRequest.DONE) {
         const response = result.responseText;
         const parseResponse=JSON.parse(response);
         setResponseId(parseResponse.id);
@@ -53,13 +53,13 @@ function Result(props){
     let userEntered=WPMResult.userInput.length
     let percentageOfCompleted = (userEntered*100)/wholeTextCount
     setPercentage(percentageOfCompleted);
-  },[])
+  },[WPMResult.userInput.length,text])
 
   return(
     <React.Fragment>
       <div className="result flex">
         {loading &&
-          <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+          <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
         }
         {responseId &&
         <div className="YourId">

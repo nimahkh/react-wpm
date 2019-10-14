@@ -19,10 +19,10 @@ function Menu() {
     </div>
     <div>
       <Switch>
-        <Route exact="exact" path="/">
+        <Route exact={true} path="/">
           <Home/>
         </Route>
-        <Route exact="exact" path="/scores">
+        <Route exact={true} path="/scores">
             <MyScores/>
         </Route>
       </Switch>

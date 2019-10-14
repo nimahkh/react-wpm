@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {useStateValue} from '../../statemanagement'
 import {Timer} from "../../utils/Timeout"
 // import {useDiff} from '../../utils/wpm'
@@ -10,23 +10,15 @@ function TextHandler(props) {
       text,
       stop,
       start,
-      renew,
       testResult
     }, dispatch] = useStateValue();
   const [typeText, setNewText] = useState();
-  const [countNode, setCountNode] = useState(0);
-  const [misspeledNode, setMissPelledNode] = useState(0);
-  const [errorNode, setErrorNode] = useState(0);
-  const [accuracyNode, setAccuracyNode] = useState();
-  const [elapsedTimeNode, setElapsedTimeNode] = useState();
   const [startTime,setStartTime]=useState();
   const [completed, setCompleted] = useState(false);
-  const [WPM, setWPM] = useState();
 
   let currentText = text !== ""
     ? selectText(text)
     : "";
-  let begun = false;
   let endTime;
   let enteredWordCount = 0;
   let elapsedTime;
@@ -52,17 +44,13 @@ function TextHandler(props) {
 
     //First start the test
     if (!start) {
-      begun = true;
       //set StartTime just once
       setStartTime(new Date());
     }
 
     //count user Entery
     enteredWordCount = stringCount(value);
-    if (enteredWordCount >= 0) {
-      //if entered Word Count is bigger than 0 , then set count node equals to enteredWordCount to show to the user
-      setCountNode(enteredWordCount);
-    }
+
 
     //if enteredWordCount count is equal to generalTextLenght , it means that test is finished .
     if (enteredWordCount === generalTextLenght) {
@@ -85,7 +73,6 @@ function TextHandler(props) {
     }
 
     if (misspelledWords >= 0) {
-      setMissPelledNode(misspelledWords)
       dispatch({
         type:'WPMResult',
         testResult: {...testResult, misspelled:misspelledWords}
@@ -137,7 +124,6 @@ function TextHandler(props) {
 
     // only display positive integers, reset markupText
     if (mistakes >= 0) {
-      setErrorNode(mistakes);
       dispatch({
         type:'WPMResult',
         testResult: {...testResult, mistakes:mistakes}
@@ -152,7 +138,6 @@ function TextHandler(props) {
 
     // ignore not-a-number errors when updating
     if (!isNaN(accuracy)) {
-      setAccuracyNode(`${accuracy}%`)
       dispatch({
         type:'WPMResult',
         testResult: {...testResult, accuracy:accuracy}
@@ -165,7 +150,6 @@ function TextHandler(props) {
     let wpm = Math.floor(enteredWordCount / elapsedMinutes);
 
     if (wpm !== Infinity && !isNaN(wpm)) {
-      setWPM(wpm)
       dispatch({
         type:'WPMResult',
         testResult: {...testResult, wpm:wpm}
@@ -207,7 +191,7 @@ function TextHandler(props) {
 }
 
 function Text(props) {
-  const [{start},dispatch] = useStateValue()
+  const [{start},] = useStateValue()
 
   return (
     <React.Fragment>

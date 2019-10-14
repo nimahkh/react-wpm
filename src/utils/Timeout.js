@@ -6,15 +6,6 @@ export function Timer(props) {
   const [,dispatch] = useStateValue();
   const [stopIt,setStopIt]=useState(false);
 
-  function Retest(){
-    setStopIt(false)
-    setElapsed(0)
-    dispatch({
-      type:"stopTimer",
-      stop: false
-    })
-  }
-
   useEffect(() => {
     let timer;
     let elapsed=0;

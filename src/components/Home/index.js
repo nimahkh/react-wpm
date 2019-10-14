@@ -5,7 +5,7 @@ import Generator from '../Generator'
 import Result from '../Result'
 
 function Home(){
-  const [{stop}, dispatch] = useStateValue();
+  const [{stop},] = useStateValue();
 
   return(
     !stop ?
