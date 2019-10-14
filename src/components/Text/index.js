@@ -187,7 +187,6 @@ function TextHandler(props) {
       dispatch({type: "stopTimer", stop: true})
     }
 
-    console.log(mistakes);
     if (mistakes === 0) {
       dispatch({
         type:'WPMResult',
@@ -213,7 +212,7 @@ function Text(props) {
   return (
     <React.Fragment>
       {start &&
-      <Timer stop={1}/>
+      <Timer stop={180}/>
       }
       <TextHandler/>
     </React.Fragment>
