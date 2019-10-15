@@ -32,7 +32,7 @@ function Generator(props) {
   }, [generateNewText])
   return (<React.Fragment>
     <div className="generatedText">
-      <span dangerouslySetInnerHTML={{
+      <div className="entryText" dangerouslySetInnerHTML={{
           __html: (errors !== "" && errors !== undefined)
             ? errors
             : text
