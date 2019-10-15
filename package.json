@@ -12,7 +12,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose",
     "eject": "react-scripts eject",
     "deploy": "npm run build && surge build wpm_nima.surge.sh"
   },
@@ -30,5 +30,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-test-renderer": "^16.10.2"
   }
 }
