@@ -12,7 +12,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --verbose",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "npm run build && surge build wpm_nima.surge.sh"
   },
@@ -32,6 +32,8 @@
     ]
   },
   "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "react-test-renderer": "^16.10.2"
   }
 }
