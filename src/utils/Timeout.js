@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useStateValue} from '../statemanagement'
+import PropTypes from 'prop-types';
 
 export function Timer(props) {
   const [elapsed, setElapsed] = useState(0);
@@ -42,4 +43,9 @@ export function Timer(props) {
     }
   </React.Fragment>)
 
+}
+
+Timer.propTypes = {
+    stop: PropTypes.number,
+    start: PropTypes.number,
 }
