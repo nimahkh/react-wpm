@@ -20,7 +20,7 @@ let response = JSON.stringify([
   }
 ]);
 
-function createXHRmock() {
+export function createXHRmock() {
   open = jest.fn();
   setRequestHeader = jest.fn()
   status = 200;
