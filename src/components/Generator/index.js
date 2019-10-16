@@ -11,7 +11,7 @@ function Generator(props) {
 
   const generateNewText = useCallback(() => {
     let params = {
-      sentences: 1,
+      sentences: 5,
       lorem: 0
     };
 
